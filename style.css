@@ -1,0 +1,40 @@
+html {
+    background-color: #333;
+    color: #fff;
+}
+
+.page {
+    width: 600px;
+    margin: auto;
+    font-family: Helvetica;
+}
+
+h1 { 
+    white-space: nowrap; 
+    text-align: center;
+    font-family: Helvetica;
+}
+
+p, pre, .embed {
+    font-family: Consolas, Monospace;
+}
+
+.embed {
+    border: 1px solid #666;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+a {
+    text-decoration: none;
+    text-shadow: rgba(0,0,255,1) 0px 0px 10px;
+}
+a:link, a:visited {
+    color:
+}
+a:hover {
+    color: magenta;
+}
+
+
+
