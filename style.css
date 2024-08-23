@@ -1,18 +1,18 @@
+
 html {
-    background-color: #333;
-    color: #fff;
+    background-color: #000;
+    color:            #fff;
 }
 
-.page {
+body {
     width: 600px;
     margin: auto;
     font-family: Helvetica;
 }
 
 h1 { 
-    white-space: nowrap; 
+    margin: 10px;
     text-align: center;
-    font-family: Helvetica;
 }
 
 p, pre, .embed {
@@ -23,17 +23,31 @@ p, pre, .embed {
     border: 1px solid #666;
     border-radius: 5px;
     padding: 5px;
+    background: #111;
 }
 
+
+@keyframes link-normal {
+    from { text-shadow: none; }
+    to   { text-shadow:
+        0 0 10px #fff,
+        0 0 10px #fff,
+        0 0 10px #fff;
+    }
+}
+
+
 a {
-    text-decoration: none;
-    text-shadow: rgba(0,0,255,1) 0px 0px 10px;
+    text-decoration: none; 
+    animation: link-normal 2s forwards;
 }
 a:link, a:visited {
-    color:
+    color: #fff;
 }
 a:hover {
-    color: magenta;
+    animation: link-normal 0.3s forwards;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 

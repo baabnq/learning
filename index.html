@@ -1,18 +1,20 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <h1>Learning</h1>        
+  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Learning</h1>        
 
-        <div class="page">
-            <p>
+    <p>
 For download and setup refer to <a href="https://github.com/baabnq/kit">the development kit</a>.
-            </p>
-            
-            <br>
+    <br>
+Or check out <a href="https://baabnq.eu.pythonanywhere.com">the WebIDE</a> to give it a quick try.
+    </p>
+        
+    <br>
 
-            <h2>Quickstart - Hello World</h2>
+    <h2>Quickstart - Hello World</h2>
+
 <pre class="embed baabnq-source">
 use 'libs/string.baabnq';
 static 'Hello, World!' _sHello;
@@ -20,9 +22,22 @@ push _sHello;
 sub String::Print;
 </pre>
 
+    <p>Save that under hello.baabnq, then compile and run with:</p>
+<pre class="embed">
+python compi.py -i hello.baabnq
+python vm.py -f build.s1
+</pre>
+        
+    <p>
+Compilation has to always take place in the directory where the compiler is located, so that it can correctly resolve and link dependencies.
+    </p>
+
+    <h2>Lessions</h2>
+    <pre class="embed" style="width: max-content; padding: 20px;">
+<a href="/lessions/1.html">Lession 1 - Variables and IO</a>
+    </pre>
 
 
-        </div>
-        <script src="highlight.js"></script>
-    </body>
+    <script src="highlight.js"></script>
+  </body>
 </html>
