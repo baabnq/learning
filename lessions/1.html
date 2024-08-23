@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <h1>Lession 1 - Variables and IO</h1>
+
+    <h2>Variables</h2>
+<pre class="embed baabnq-source">
+put _a = 100;
+put _b = 200;
+put _a = _b;
+</pre>
+    <p>
+Variables in Baabnq are always prefixed by an underscore "_" and are always assigned with the "put" command. 
+However, they are not declared but inferred by the compiler. 
+Meaning, a variable is created when it's first assigned to something. 
+Baabnq is a typeless language, which means that variables are not created with a type and are always 16-bit ( 0 - 65535 ) unsigned integers.
+    </p>
+
+
+    <h2>Output</h2>
+    <h3>Print</h3>
+<pre class="embed baabnq-source">
+print 100;
+put _a = 200;
+print _a;
+</pre>
+    <p>
+The "print" command takes a variable or a constant and outputs it to stdout as an unsigned decimal integer. 
+So as a result, the program above will print the following to the stdout:
+    </p>
+<pre class="embed">
+100
+200
+</pre>
+
+    <h3>Putchr</h3>
+<pre class="embed baabnq-source">
+putchr 10;
+</pre>
+    <p>
+The "putchr" command also takes a variable or a constant, but it outputs the corresponding <a href="https://en.wikipedia.org/wiki/Unicode">unicode character</a>. 
+So the above program would output a line feed.
+    </p>
+
+    <h2>Input</h2>
+<pre class="embed baabnq-source">
+input _a;
+input _b;
+</pre>
+    <p>
+The "input" command reads an unsigned decimal integer from stdin and writes it to the specified variable.
+    </p>
+
+    <script src="/highlight.js"></script>
+  </body>
+</html>
