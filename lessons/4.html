@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <h1>Lession 4 - Stack and Routines</h1>
+
+    <p>
+Routines in Baabnq are kind of like functions or methods in higher-level programming languages. 
+They define encapsulated parts of the program that can be called multiple times from different points in the program.
+Baabnq uses one shared stack for both <a href="https://en.wikipedia.org/wiki/Return_statement">return addresses</a> and routine parameters. 
+Furthermore, Baabnq doesn't build stack frames as the underlying VM only provides a stack pointer and not a base pointer.
+    </p>
+
+    <h2>Calling Routines</h2>
+
+<pre class="embed baabnq-source">
+sub routine;
+sub routine;
+asm 'brk';
+
+lab routine;
+    print 123;
+return;
+</pre>
+
+    <p>
+The above program defines a routine that prints 123 and then calls that routine twice.
+The "asm" is an <a href="">inline assembler statement</a> and just halts the program. 
+Halting the program before it reaches the definition of the routine is important, because otherwise execution would continue and run through that definition as if it were normal code. 
+There is nothing that inherently distinguishes the routine from the rest of the program, except the fact that it's called by the "sub" command.
+A rule of thumb is that routine calls are used globally, while jumps are used locally.
+    </p>
+
+    <h2>In and Out Parameters</h2>
+
+    <p>
+Parameters, sometimes also called arguments, function to pass values in and out of a routine.
+They are kept on the stack alongside the return address when calling a routine.
+    </p>
+
+<pre class="embed baabnq-source">
+use 'libs/stack.baabq';
+
+push 1;
+push 2;
+sub add;
+pull __;
+print __;
+
+asm 'brk';
+
+lab add;
+    sub Stack::Swap; pull _a;
+    sub Stack::Swap; pull _b;
+
+    push _a + _b;
+    sub Stack::Swap;
+    return;
+</pre>
+
+    <p>
+In the program above, a routine is defined for adding two values together and is then called with the in-parameters 1 and 2. 
+After the routine finishes, the one out-parameter is pulled from the stack and then output. 
+In the first line of the program, the stack library is imported to provide the Stack::Swap routine, which is used to swap the top two values on the stack. 
+This is necessary because right before the routine is called, the return address is pushed onto the stack last, which buries the in-parameters under it. 
+The return address could also be taken off of the stack by the routine, but this is rather uncommon due to it's high risk of <a href="">variable collision</a>.
+    </p>
+
+    <script src="/highlight.js"></script>
+  </body>
+</html>
