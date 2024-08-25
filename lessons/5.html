@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <h1>Lession 5 - Static Allocation</h1>
+
+    <p>
+Memory in Baabnq, is always allocated as continuous pieces of varying length. These so called chunks of memory, are prefixed by their length which is accessible through <a href="">negative indexing</a>.
+In static allocation, that address and instantiation of the chunk is done at compile-time, meaning that only the one specific instance of the chunk is present in memory.
+    </p>
+
+    <h2>String Allocation</h2>
+<pre class="embed baabnq-source">
+static 'hello' _sHello;
+
+put _i = 0;
+lab printLoop;
+    put _char <- _sHello + _i;
+    put _i = _i + 1;
+    putchr _char;
+jump printLoop ~ _char != 0;
+</pre>
+
+    <p>
+The above program first statically allocates a chunk containing the string "hello", then iterates over it, printing out the content. 
+Strings are always formatted with a <a href="https://en.wikipedia.org/wiki/Null-terminated_string">null-terminator</a>, which is why the program checks for when the character value is zero.
+    </p>
+
+    <h2>Length Allocation</h2>
+<pre class="embed baabnq-source">
+use 'libs/chunk.baabnq';
+
+static 3 _pMem;
+
+put 3 -> _pMem + 0;
+put 1 -> _pMem + 1;
+put 4 -> _pMem + 2;
+
+push _pMem;
+sub Chunk::Print;
+</pre>
+
+    <p>
+The above program statically allocates 3 words of memory, then fills them with the first 3 digits of pi, after which it prints them out.
+    </p>
+
+    <br>
+    <h3><a href="/lessons/6.html">Next Lesson</a></h3>
+    <br>
+
+    <script src="/highlight.js"></script>
+  </body>
+</html>

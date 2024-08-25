@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <h1>Lession 6 - Dynamic Allocation</h1>
+
+    <p>
+Dynamic memory alloction work exactly like static memory alloction, except that the size of the chunk does not have to be know at compiler-time and that the chunk can be freed again.
+    </p>
+
+    <h2>Allocation</h2>
+<pre class="embed baabnq-source">
+new 'Hello World!' _sHello;
+new 3 _pMem;
+
+put _size = 10;
+new _size _pMemBasedOnVariableSize;
+</pre>
+
+    <p>
+Allocation of dynamic memory uses the keyword "new" instead of "static".
+    </p>
+
+    <h2>Freeing</h2>
+<pre class="embed baabnq-source">
+new 'Hello World!' _sHello;
+free _sHello;
+</pre>
+
+    <p>
+The above program dynamically allocates a chunk and then frees it immediately after.
+    </p>
+
+    <br>
+    <h3><a href="/lessons/7.html">Next Lesson</a></h3>
+    <br>
+
+    <script src="/highlight.js"></script>
+  </body>
+</html>

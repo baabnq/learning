@@ -64,8 +64,12 @@ In the program above, a routine is defined for adding two values together and is
 After the routine finishes, the one out-parameter is pulled from the stack and then output. 
 In the first line of the program, the stack library is imported to provide the Stack::Swap routine, which is used to swap the top two values on the stack. 
 This is necessary because right before the routine is called, the return address is pushed onto the stack last, which buries the in-parameters under it. 
-The return address could also be taken off of the stack by the routine, but this is rather uncommon due to it's high risk of <a href="">variable collision</a>.
+The return address could also be taken off of the stack by the routine, but this is rather uncommon due to the high risk of <a href="">variable collision</a>.
     </p>
+
+    <br>
+    <h3><a href="/lessons/5.html">Next Lesson</a></h3>
+    <br>
 
     <script src="/highlight.js"></script>
   </body>
