@@ -6,20 +6,26 @@
     <h1>Lession 8 - Routine Signatures</h1>
 
 <pre class="embed baabnq-source">
-"(InParam1::InType1, ...) => (OutParam1::OutType)
-lab routine;
+"(A::Int, B::Int) => (S::Int)
+"add a b = a + b
+"add &#8592; +
+"takes two integers and returns their sum
+lab add;
+  "...
 </pre>
 
 
     <p>
-        A Routine Signature specifies the <a href="/extra/types.html">type</a> of a routine.
+        A Routine Signature is a comment the preceeds the actual routine and specifies the routine's <a href="/extra/types.html">type</a>.
         It is comprised of two parts: The type signature and the implementation signature.
     </p>
     
     <br>
     <h3>Type Signature</h3>
     <p>
-        
+        The type signature usually comes first in the routine signature and details the in- and out-parameter names along with their types in calling order.
+        <br><span class="inline-embed" style="color: gray; margin: 10px; display: inline-block;">(InParam::InType, ...) => (OutParam::OutType, ...)</span><br>
+
     </p>
 
         
