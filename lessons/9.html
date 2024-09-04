@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .g { color: #aaa; }
+    </style>
+  </head>
+  <body>
+    <h1>Lession 9 - Naming Conventions</h1>
+    
+<pre class="embed baabnq-source">
+lab MyModule::Routine;
+    put _local = 0;
+    new 'example' _sLocalString;
+    
+    lab MyModule::Routine::OuterSublabel;
+        lab MyModule::Routine::OuterSublabel::InnerSublabel;
+        
+    return;
+</pre>
+
+    <p>
+        Note that: These conventions are only guidelines and not rigid rules.
+        It's generally a good idea to follow these, but you can to whatever you want, i (probably) won't stop you.
+    </p>
+
+    <h3>Routines and Sublabels</h3>
+    <p>
+        Labels in routines always follow this format:
+        <span class="inline-embed" style="display: inline-block; margin: 10px;">
+            <span style="color: yellow;">lab</span>
+            <span class="g">&lt;module name&gt;</span>::<span class="g">&lt;routine name&gt;</span>::<span class="g">&lt;sublabel 0&gt;</span>::<span class="g"> ... </span>; 
+        </span>
+    </p>
+
+
+    
+
+    <br>
+    <h3><a href="/lessons/9.html">Next Lesson</a></h3>
+    <br>
+
+    <script src="/highlight.js"></script>
+  </body>
+</html>
