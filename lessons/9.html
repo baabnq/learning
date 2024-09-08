@@ -13,8 +13,8 @@ lab MyModule::Routine;
     put _local = 0;
     new 'example' _sLocalString;
     
-    lab MyModule::Routine::OuterSublabel;
-        lab MyModule::Routine::OuterSublabel::InnerSublabel;
+    lab MyModule::Routine::OuterScope;
+        lab MyModule::Routine::OuterScope::InnerScope;
         
     return;
 </pre>
@@ -24,14 +24,32 @@ lab MyModule::Routine;
         It's generally a good idea to follow these, but you can to whatever you want, i (probably) won't stop you.
     </p>
 
-    <h3>Routines and Sublabels</h3>
+    <h2>Routines and Sublabels</h2>
     <p>
         Labels in routines always follow this format:
-        <span class="inline-embed" style="display: inline-block; margin: 10px;">
+        <br><span class="inline-embed" style="display: inline-block; margin: 10px;">
             <span style="color: yellow;">lab</span>
             <span class="g">&lt;module name&gt;</span>::<span class="g">&lt;routine name&gt;</span>::<span class="g">&lt;sublabel 0&gt;</span>::<span class="g"> ... </span>; 
-        </span>
+        </span><br>
+        
+        This is because labels, much like variables, have no scope and are globally accessable.<br>
+        
     </p>
+
+    <h2>Variables</h2>
+    <p>
+        Variables sometimes use a form of <a href="https://en.wikipedia.org/wiki/Hungarian_notation">Hungarian Notation</a> to indicate their <a href="/extra/types.html">type</a>.
+        Variables are prefixed with a shorthand identifier, the most common of which are:
+    </p>
+    
+    <table>
+        <tr> <th>Prefix</th> <th>Meaning</th>              </tr>
+        <tr> <td>"s"</td>    <td>string</td>               </tr>
+        <tr> <td>"p"</td>    <td>pointer</td>              </tr>
+        <tr> <td>"i"</td>    <td>index</td>              </tr>
+        <tr> <td>"fp"</td>   <td>floating-point value</td> </tr>
+    </table>
+
 
 
     
