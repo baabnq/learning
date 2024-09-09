@@ -32,24 +32,33 @@ lab MyModule::Routine;
             <span class="g">&lt;module name&gt;</span>::<span class="g">&lt;routine name&gt;</span>::<span class="g">&lt;sublabel 0&gt;</span>::<span class="g"> ... </span>; 
         </span><br>
         
-        This is because labels, much like variables, have no scope and are globally accessable.<br>
+        This is known as identifier scoping and done because labels, much like variables, 
+        have no inherent scope and are globally accessable.<br>
         
     </p>
 
     <h2>Variables</h2>
     <p>
-        Variables sometimes use a form of <a href="https://en.wikipedia.org/wiki/Hungarian_notation">Hungarian Notation</a> to indicate their <a href="/extra/types.html">type</a>.
+        Variables often use a form of <a href="https://en.wikipedia.org/wiki/Hungarian_notation">Hungarian Notation</a> to indicate their <a href="/extra/types.html">type</a>.
         Variables are prefixed with a shorthand identifier, the most common of which are:
     </p>
     
     <table>
-        <tr> <th>Prefix</th> <th>Meaning</th>              </tr>
-        <tr> <td>"s"</td>    <td>string</td>               </tr>
-        <tr> <td>"p"</td>    <td>pointer</td>              </tr>
-        <tr> <td>"i"</td>    <td>index</td>              </tr>
-        <tr> <td>"fp"</td>   <td>floating-point value</td> </tr>
+        <tr> <th>Prefix</th> <th>Meaning</th>              <th>Example</th></tr>
+        <tr> <td>"s"</td>    <td>string</td>               <td><p class="inline-embed baabnq-source">new 'hello world' _sHello;</p></td></tr>
+        <tr> <td>"p"</td>    <td>pointer</td>              <td><p class="inline-embed baabnq-source">static 100 _pBuffer;</p></td></tr>
+        <tr> <td>"i"</td>    <td>index</td>                <td><p class="inline-embed baabnq-source">put _iLoop = 0;</p></td></tr>
+        <tr> <td>"fp"</td>   <td>floating-point value</td> <td><p class="inline-embed baabnq-source">put _fpValue = _Floats::Zero;</p></td></tr>
     </table>
-
+    
+    <p>
+        While variables are also all scopeless, they are almost always only used locally.
+        As such, they usually don't use identifier scoping.
+        The arising problem of <a href="">variable collision</a> between different routines and modules is solved through <a href="">variable insulation</a>.
+        When a variable is, however, is intended for global use, it also uses identifier scoping. See the example above 
+        <span class="inline-embed" style="color: cyan;">_Floats::Zero</span>, where this is used for a globally accessable constant, stemming from the floating-point module.
+        
+    </p>
 
 
     
