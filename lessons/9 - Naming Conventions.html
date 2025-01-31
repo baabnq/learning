@@ -21,7 +21,7 @@ lab MyModule::Routine;
 
     <p>
         Note that: These conventions are only guidelines and not rigid rules.
-        It's generally a good idea to follow these, but you can to whatever you want, i (probably) won't stop you.
+        It's generally a good idea to follow these, but you can do whatever you want, i (probably) won't stop you.
     </p>
 
     <h2>Routines and Sublabels</h2>
@@ -49,13 +49,14 @@ lab MyModule::Routine;
         <tr> <td>"p"</td>    <td>pointer</td>              <td><p class="inline-embed baabnq-source">static 100 _pBuffer;</p></td></tr>
         <tr> <td>"i"</td>    <td>index</td>                <td><p class="inline-embed baabnq-source">put _iLoop = 0;</p></td></tr>
         <tr> <td>"fp"</td>   <td>floating-point value</td> <td><p class="inline-embed baabnq-source">put _fpValue = _Floats::Zero;</p></td></tr>
+        <tr> <td>"a"</td>    <td>(program) address</td>    <td><p class="inline-embed baabnq-source">put _aReturn = 123;</p></td></tr>
     </table>
     
     <p>
         While variables are also all scopeless, they are almost always only used locally.
         As such, they usually don't use identifier scoping.
         The arising problem of <a href="">variable collision</a> between different routines and modules is solved through <a href="">variable insulation</a>.
-        When a variable is, however, is intended for global use, it also uses identifier scoping. See the example above 
+        When a variable is, however, intended for global use, it also uses identifier scoping. See the example above 
         <span class="inline-embed" style="color: cyan;">_Floats::Zero</span>, where this is used for a globally accessable constant, stemming from the floating-point module.
         
     </p>
