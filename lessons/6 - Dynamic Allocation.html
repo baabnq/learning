@@ -7,7 +7,9 @@
     <h1>Lesson 6 - Dynamic Allocation</h1>
 
     <p>
-Dynamic memory alloction work exactly like static memory alloction, except that the size of the chunk does not have to be know at compiler-time and that the chunk can be freed again.
+Dynamic memory allocation work exactly like static memory allocation, except that the size of the chunk does not have to be know at compile-time and that the chunk can be freed again.
+Dynamic chunks are allocated on the heap, which is the upper 32K of memory.
+Because this allocation has to take place at run-time, it is managed by the virtual machine.
     </p>
 
     <h2>Allocation</h2>
