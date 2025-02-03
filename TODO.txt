@@ -1,0 +1,33 @@
+-docs
+    -better quickstart
+
+    - "I'm confused" links
+
+
+    -lessons:
+
+        -THESE A THING RIGHT HERE THAT SAYS:
+            "Pages for: chunk & routine call conventions"
+
+        -example hub page
+            -leetcode
+            -exts lol ig
+            -progs
+                -fix
+
+
+        -variable collision
+        -variable insulation
+        -stdlib stuff
+            -looking at source code before using routine
+
+        -structure convention
+        -module conventions
+
+        -advanced stuff:
+            -compile-time generics
+
+        -asm s1asm
+
+        -grammar checks
+        -links
