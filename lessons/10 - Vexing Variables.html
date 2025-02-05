@@ -99,6 +99,8 @@ lab subroutine;
         because it works for all calls of a subroutine, not just one.
         The only problem with internal VI is that, it is sometimes harder to implement,
         especially when the relevant variable is used to pull an in-parameter.
+        Internal VI is also technically doing work that it might not have to, because
+        the variable it's insulating might not be used by the caller.
     </p>
     <p>
         And so, as with many things in programming:
