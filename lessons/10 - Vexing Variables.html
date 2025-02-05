@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/learning/style.css">
+    <title>Lesson 10</title>
+    <style>
+.super-embed {
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: black;
+}
+    </style>
+  </head>
+  <body>
+    <h1>Lesson 10 - Vexing Variables</h1>
+
+    <h2>Variable Collision</h2>
+    <p>
+        If two routines use variables of the same name, that compile can not distinguish the two, because variables are global.
+        Consider the following:
+
+    <pre class="embed baabnq-source">
+lab routine;
+    put _a = 0;
+    sub subroutine;
+    print _a;
+    return;
+
+lab subroutine;
+    put _a = 1;
+    return;
+    </pre>
+
+        Calling <span class="inline-embed">routine</span> will print 1
+        because the <span class="inline-embed" style="color: cyan">_a</span> in <span class="inline-embed">routine</span> is
+        overwritten by the <span class="inline-embed" style="color: cyan">_a</span> in <span class="inline-embed">subroutine</span>.
+        This is known as variable collision. Sometimes, collision can be resolved by just renaming one of the two variables.
+        However, renaming might not always be possible, especially when recursion is involved.
+    </p>
+
+    <br>
+    <h2>Variable Insulation</h2>
+    <p>
+        Variable insulation is a technique for preventing variable collision.
+        The idea is to save a variable to the stack before any overwriting would have happened.
+        There are two types of variable insulation: 
+    </p>
+
+    <div class="embed super-embed">
+        <h3>Internal Variable Insulation</h3>
+        <p>
+            In internal variable insulation the callee (routine being called) is doing the saving.
+        </p>
+        <pre class="embed baabnq-source">
+lab routine;
+    put _a = 0;
+    sub subroutine;
+    print _a;
+    return;
+
+lab subroutine;
+    push _a; "save _a
+    put _a = 1;
+    pull _a; "restore _a
+    return;
+        </pre>
+    </div>
+
+    <div class="embed super-embed">
+        <h3>External Variable Insulation</h3>
+        <p>
+            In external variable insulation the caller (i'm guessing you know what a caller is) is doing the saving.
+        </p>
+        <pre class="embed baabnq-source">
+lab routine;
+    put _a = 0;
+    push _a; "save _a
+    sub subroutine;
+    pull _a; "restore _a
+    print _a;
+    return;
+
+lab subroutine;
+    put _a = 1;
+    return;
+        </pre>
+    </div>
+
+    <p>
+        Internal variable insulation is obviously that preferred way of doing things,
+        because it works for all calls of a subroutine, not just one.
+        The only problem with internal VI is that, it is sometimes harder to implement,
+        especially when the relevant variable is used to pull an in-parameter.
+    </p>
+    <p>
+        And so, as with many things in programming:
+        It's a <a href="https://en.wikipedia.org/wiki/Trade-off">trade-off</a>.
+        It depends on context with type of VI to use.
+    </p>
+    
+
+    <br>
+    <h3><a href="/learning/lessons/">Next Lesson</a></h3>
+    <br>
+
+    <script src="/learning/highlight.js"></script>
+  </body>
+</html>
