@@ -8,17 +8,26 @@
     padding-right: 30px;
     background-color: black;
 }
+h5 {
+    /* annotation */
+    font-weight: lighter;
+    text-align: right;
+    margin: 0px;
+    padding: 0px;
+    color: gray;
+}
     </style>
   </head>
   <body>
     <h1>Lesson 10 - Vexing Variables</h1>
+    <h5>(Vexing means annoying, btw)</h5>
 
     <h2>Variable Collision</h2>
     <p>
         If two routines use variables of the same name, that compile can not distinguish the two, because variables are global.
         Consider the following:
 
-    <pre class="embed baabnq-source">
+        <pre class="embed baabnq-source">
 lab routine;
     put _a = 0;
     sub subroutine;
@@ -28,7 +37,7 @@ lab routine;
 lab subroutine;
     put _a = 1;
     return;
-    </pre>
+        </pre>
 
         Calling <span class="inline-embed">routine</span> will print 1
         because the <span class="inline-embed" style="color: cyan">_a</span> in <span class="inline-embed">routine</span> is
@@ -94,7 +103,7 @@ lab subroutine;
     <p>
         And so, as with many things in programming:
         It's a <a href="https://en.wikipedia.org/wiki/Trade-off">trade-off</a>.
-        It depends on context with type of VI to use.
+        It depends on context which type of VI to use.
     </p>
     
 
