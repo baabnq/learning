@@ -27,6 +27,7 @@ h5 {
         If two routines use variables of the same name, then the compiler can not distinguish the two, because variables are global.
         Consider the following:
 
+    </p>
         <pre class="embed baabnq-source">
 lab routine;
     put _a = 0;
@@ -39,6 +40,7 @@ lab subroutine;
     return;
         </pre>
 
+    <p>
         Calling <span class="inline-embed">routine</span> will print 1
         because the <span class="inline-embed" style="color: cyan">_a</span> in <span class="inline-embed">routine</span> is
         overwritten by the <span class="inline-embed" style="color: cyan">_a</span> in <span class="inline-embed">subroutine</span>.
