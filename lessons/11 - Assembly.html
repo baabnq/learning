@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/learning/style.css">
+    <title>Lesson 11</title>
+    <style>
+img {
+    padding: 10px;
+    width: 50%;
+    margin: auto;
+    display: block;
+}
+    </style>
+  </head>
+  <body>
+    <h1>Lesson 11 - Assembly</h1>
+    <p>
+        Baabnq compiles down to S1Asm (S1monsAssembly, very creative name, i know, but i came up with it like 6 years ago, so cut me some slack). 
+        This is relevant because it means that all assembler written in baabnq as inline is S1Asm.
+        <br>
+        Inline assembler in baabnq is done with the <span style="color: #2f2" class="inline-embed">asm</span> command.
+        Consider the following example:
+
+    </p>
+        <pre class="embed baabnq-source">
+asm 'set 123';
+asm 'sRD 0';
+asm 'out 0';
+asm 'brk';
+        </pre>
+
+    <p>
+        The above example will print "123", but it's functioning isn't relevant for now.
+        <br>
+        S1Asm always targets the S1AsmVM, which is a minimal 16-bit virtual machine.
+        It will be detailed in the following:
+    </p>
+
+    <h3>Specifications</h3>
+    <pre class="embed">
+- fully 16 bit
+    -> 16 bit registers
+    -> 65k data memory
+    -> 65k program memory 
+    -> 65k stack
+
+- 2 general purpose registers
+    -> "Acc" = accumulator
+    -> "Reg" = (aux) register
+
+- 2 (nameless) special purpose registers
+    -> stack pointer
+    -> program pointer/counter
+
+- vm managed heap in upper 32k of data memory
+    -> no runtime necessary because vm does alloc/dealloc
+
+( - baabnq stores dynamic chunks on the heap)
+( - baabnq stores static  chunks and variables in the rest)
+    </pre>
+
+    <h3>Core Architecture Diagram</h3>
+    <p>
+        This diagram only contains core components and omits more complicated parts,
+        like the heap manager, for sake of readability.
+    </p>
+    <img  class="embed" src="/learning/pics/vm.svg">
+
+
+    <br>
+    <h3><a href="/learning/lessons/">Next Lesson</a></h3>
+    <br>
+
+    <script src="/learning/highlight.js"></script>
+  </body>
+</html>
