@@ -6,28 +6,35 @@
 
     -lessons:
 
-        -THESE A THING RIGHT HERE THAT SAYS:
-            "Pages for: chunk & routine call conventions"
+        -THESE A THING RIGHT HERE THAT SAYS: /
+            "Pages for: chunk & routine call conventions" / (?)
 
-        -example hub page
-            -leetcode
-            -exts lol ig
-            -progs
+        -example hub page /
+            -leetcode     /
+            -exts lol ig  /
+            -progs        /
                 -fix
 
+        -fix
+            -command definition in early lesson to use "inline-embed"
+            -reference to example page on philosophy page or others
 
-        -variable collision
-        -variable insulation
+
+        -variable collision  /
+        -variable insulation /
+
+        -asm s1asm
         -stdlib stuff
             -looking at source code before using routine
 
         -structure convention
         -module conventions
 
-        -advanced stuff:
-            -compile-time generics
+        (
+            -advanced stuff:
+                -compile-time generics
+        )
 
-        -asm s1asm
 
-        -grammar checks
         -links
+        -grammar checks
