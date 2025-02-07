@@ -1,0 +1,11 @@
+01 - Variables and IO.html
+02 - Arithmetic and Operators.html
+03 - Flow Control.html
+04 - Stack and Routines.html
+05 - Static Allocation.html
+06 - Dynamic Allocation.html
+07 - Philosophy.html
+08 - Routine Signatures.html
+09 - Naming Conventions.html
+10 - Vexing Variables.html
+11 - Assembly.html

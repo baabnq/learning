@@ -33,12 +33,40 @@ python vm.py -f build.s1
 Compilation has to always take place in the directory where the compiler is located, so that it can correctly resolve and link dependencies.
     </p>
 
+    <br>
     <h2>Lessons</h2>
-    <pre class="embed" style="width: max-content; padding: 20px;">
-<a href="/learning/lessons/1 - Variables and IO.html">Lesson 1 - Variables and IO</a>
-    </pre>
+    <p>
+To learn more about baabnq, you can follow the lesson down below, which will take you through the language step by step.
+If, at any point, you want more concrete usage of baabnq,
+you can have a look at the <a href="/learning/extra/examples.html">examples page</a>.
+<br>
+Note that, the lesson assume you have intermediate knowledge about computer programming as well as computer architecture.
+    </p>
+    <div id="link-container" class="embed" style="width: max-content; padding: 20px;">
+    </div>
 
 
     <script src="highlight.js"></script>
+    <script>
+        //this script will render the lesson links dynamically because i'm lazy and don't wanna do it manually.
+        var listRequest = new XMLHttpRequest();
+        listRequest.open("GET", "/learning/lessons/list.txt", false);
+        listRequest.send(null);
+
+        var container = document.getElementById("link-container");
+
+        listRequest
+        .responseText
+        .trim()
+        .split("\n")
+        .map((name) => {
+            var elem = document.createElement("a");
+            elem.href = `/learning/lessons/${name}`;
+            elem.innerText = name.replace(".html", "");
+            container.appendChild(elem);
+            container.appendChild(document.createElement("br"));
+        });
+
+    </script>
   </body>
 </html>
