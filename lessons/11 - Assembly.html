@@ -29,7 +29,7 @@ asm 'brk';
         </pre>
 
     <p>
-        The above example will print "123", but it's functioning isn't relevant for now.
+        The above example will print 123, but it's functioning isn't relevant for now.
         <br>
         S1Asm always targets the S1AsmVM, which is a minimal 16-bit virtual machine.
         It will be detailed in the following:
@@ -64,6 +64,50 @@ asm 'brk';
         like the heap manager, for sake of readability.
     </p>
     <img  class="embed" src="/learning/pics/vm.svg">
+
+    
+    <h3>Instruction Set</h3>
+
+    <p>
+        Some instructions take an attribute, which is denoted "attr".
+    </p>
+    <div style="
+        position: relative;
+        width: 100vw;
+        right: calc(50vw - 50%);
+        display: flex;
+        justify-content: center;
+    ">
+        <div class="embed">
+            <table>
+                <tr> <td>Mnemonic</td> <td>Meaning</td>          <td>Pseudocode</td> <td>Description</td> </tr>
+
+                <tr> <td>"set"</td>    <td>SET</td>              <td>reg = attr</td> <td>Load attribute as literal into reg</td> </tr>
+
+                <tr> <td>"add"</td>    <td>ADD</td>              <td>acc += reg</td> <td>Add reg to acc                    </td> </tr>
+                <tr> <td>"sub"</td>    <td>SUBtract</td>         <td>acc -= reg</td> <td>Subtract reg from acc             </td> </tr>
+                <tr> <td>"shg"</td>    <td>SHift Great</td>      <td>acc *= 2  </td> <td>Shift acc in MSb direction        </td> </tr>
+                <tr> <td>"shs"</td>    <td>SHift Small</td>      <td>acc /= 2  </td> <td>Shift acc in LSb direction        </td> </tr>
+
+                <tr> <td>"lor"</td>    <td>Logical OR  </td>     <td>acc |= reg</td> <td>Take bitwise OR  of acc and reg, write back to acc</td> </tr>
+                <tr> <td>"and"</td>    <td>AND         </td>     <td>acc &= reg</td> <td>Take bitwise AND of acc and reg, write back to acc</td> </tr>
+                <tr> <td>"xor"</td>    <td>eXclusive OR</td>     <td>acc ^= reg</td> <td>Take bitwise XOR of acc and reg, write back to acc</td> </tr>
+                <tr> <td>"not"</td>    <td>NOT         </td>     <td>acc ~= acc</td> <td>Take bitwise NOT of acc,         write back to acc</td> </tr>
+
+                <tr> <td>"lDA"</td>    <td>Load Data Acc</td>    <td>acc = mem[attr]</td>      <td>Load memory at addr into acc</td> </tr>
+                <tr> <td>"lDR"</td>    <td>Load Data Reg</td>    <td>reg = mem[attr]</td>      <td>Load memory at addr into reg</td> </tr>
+                <tr> <td>"sAD"</td>    <td>Save Acc Data</td>    <td>mem[attr] = acc</td>      <td>Save acc into memory at addr</td> </tr>
+                <tr> <td>"sRD"</td>    <td>Save Reg Data</td>    <td>mem[attr] = reg</td>      <td>Sava reg into memory at addr</td> </tr>
+
+                <tr> <td>"lPA"</td>    <td>Load Pointer Acc</td> <td>acc = mem[mem[attr]]</td> <td>Load memory at pointer at addr into acc</td> </tr>
+                <tr> <td>"lPR"</td>    <td>Load Pointer Reg</td> <td>reg = mem[mem[attr]]</td> <td>Load memory at pointer at addr into reg</td> </tr>
+                <tr> <td>"sAP"</td>    <td>Save Acc Pointer</td> <td>mem[mem[attr]] = acc</td> <td>Save acc into memory at pointer at addr</td> </tr>
+                <tr> <td>"sRP"</td>    <td>Save Reg Pointer</td> <td>mem[mem[attr]] = reg</td> <td>Save reg into memory at pointer at addr</td> </tr>
+
+                
+            </table>
+        </div>
+    </div>
 
 
     <br>
