@@ -97,6 +97,8 @@ var lexBaabnq = (raw) => {
         
         index++;
     }
+
+    if (buffer) pushBuffer(); 
     
     console.log(tokenStream);
     return tokenStream;
