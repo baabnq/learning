@@ -13,7 +13,7 @@ put _b = 200;
 put _a = _b;
 </pre>
     <p>
-Variables in Baabnq are always prefixed by an underscore "_" and are always assigned with the "put" command. 
+Variables in Baabnq are always prefixed by an underscore <span class="inline-embed baabnq-source">_</span> and are always assigned with the <span class="inline-embed baabnq-source">put</span> command. 
 However, they are not declared but inferred by the compiler. 
 Meaning, a variable is created when it's first assigned to something. 
 Baabnq is a typeless language, which means that variables are not created with a type and are always 16-bit ( 0 - 65535 ) unsigned integers.
@@ -28,7 +28,7 @@ put _a = 200;
 print _a;
 </pre>
     <p>
-The "print" command takes a variable or a constant and outputs it to stdout as an unsigned decimal integer. 
+The <span class="inline-embed baabnq-source">print</span> command takes a variable or a constant and outputs it to stdout as an unsigned decimal integer. 
 So as a result, the program above will print the following to the stdout:
     </p>
 <pre class="embed">
@@ -41,7 +41,7 @@ So as a result, the program above will print the following to the stdout:
 putchr 10;
 </pre>
     <p>
-The "putchr" command also takes a variable or a constant, but it outputs the corresponding <a href="https://en.wikipedia.org/wiki/Unicode">unicode character</a>. 
+The <span class="inline-embed baabnq-source">putchr</span> command also takes a variable or a constant, but it outputs the corresponding <a href="https://en.wikipedia.org/wiki/Unicode">unicode character</a>. 
 So the above program would output a line feed.
     </p>
 
@@ -51,7 +51,7 @@ input _a;
 input _b;
 </pre>
     <p>
-The "input" command reads an unsigned decimal integer from stdin and writes it to the specified variable.
+The <span class="inline-embed baabnq-source">input</span> command reads an unsigned decimal integer from stdin and writes it to the specified variable.
     </p>
 
     <br>
