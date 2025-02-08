@@ -9,6 +9,9 @@ img {
     margin: auto;
     display: block;
 }
+li {
+     font-family: Consolas, Monospace;
+}
     </style>
   </head>
   <body>
@@ -104,11 +107,41 @@ asm 'brk';
                 <tr> <td>"sAP"</td>    <td>Save Acc Pointer</td> <td>mem[mem[attr]] = acc</td> <td>Save acc into memory at pointer at addr</td> </tr>
                 <tr> <td>"sRP"</td>    <td>Save Reg Pointer</td> <td>mem[mem[attr]] = reg</td> <td>Save reg into memory at pointer at addr</td> </tr>
 
+                <tr> <td>"out"</td>    <td>OUTput</td> <td>out(mem[attr])</td>   <td>Write memory at attr to stdout (implementation dependent)</td> </tr>
+                <tr> <td>"inp"</td>    <td>INPut</td>  <td>mem[attr] = in()</td> <td>Read stdin into memory at attr (implementation dependent)</td> </tr>
+
+                <tr> <td>"lab"</td>    <td>LABel             </td>  <td>LUT[attr] = PC                 </td> <td>Define the label of name given by attr                 </td> </tr>
+                <tr> <td>"got"</td>    <td>GOTo              </td>  <td>PC = LUT[attr]                 </td> <td>Jump to label given by attr                            </td> </tr>
+                <tr> <td>"jm0"</td>    <td>JuMp if 0         </td>  <td>if (acc == 0) PC = LUT[attr]   </td> <td>Jump to label given by attr if acc is zero             </td> </tr>
+                <tr> <td>"jmA"</td>    <td>JuMp if Acc is reg</td>  <td>if (acc == 0) PC = LUT[attr]   </td> <td>Jump to label given by attr if acc is reg              </td> </tr>
+                <tr> <td>"jmG"</td>    <td>JuMp if Greater   </td>  <td>if (acc > reg) PC = LUT[attr]  </td> <td>Jump to label given by attr if acc is greater than reg </td> </tr>
+                <tr> <td>"jmL"</td>    <td>JuMp if Lesser    </td>  <td>if (acc < reg) PC = LUT[attr]  </td> <td>Jump to label given by attr if acc is lesser  than reg </td> </tr>
                 
+                <tr> <td>"jmS"</td> <td>JuMp Subroutine</td> <td>stack.push(PC+1); PC = LUT[attr]</td> <td>Call subroutine giben by attr</td> </tr>
+                <tr> <td>"ret"</td> <td>RETurn         </td> <td>PC = stack.pop()                </td> <td>Return from subroutine</td> </tr>
+
+                <tr> <td>"pha"</td> <td>PusH Acc</td> <td>stack.push(acc)  </td> <td>Push from acc to stack</td> </tr>
+                <tr> <td>"pla"</td> <td>PuLl Acc</td> <td>acc = stack.pop()</td> <td>Pop  from stack to acc</td> </tr>
+
+                <tr> <td>"brk"</td> <td>BReaK</td> <td>exit()       </td> <td>Halt execution</td> </tr>
+                <tr> <td>"clr"</td> <td>CLeaR</td> <td>acc = reg = 0</td> <td>Clear acc and reg, setting them to zero</td> </tr>
+
+                <tr> <td>"putstr"</td> <td>PUT STRing</td> <td>putchar(acc)</td> <td>Write acc to stdout as a unicode character</td> </tr>
+
+                <tr> <td>"ahm"</td> <td>Allocate Heap Memory</td> <td>acc = malloc(reg)</td> <td>Allocate memory on the heap</td> </tr>
+                <tr> <td>"fhm"</td> <td>Free Heap Memory    </td> <td>free(acc)        </td> <td>Free memory on the heap    </td> </tr>
+
             </table>
         </div>
     </div>
 
+    <h4>Annotations</h4>
+    <ul>
+        <li>In the standard implementation of the VM, the "out" and "inp" instructions write/read a decimal number from/to stdio respectively.</li>
+        <li>The "lab" instruction is the only preprocessed instruction. </li>
+        <li>The "fhm" instruction requires reg to containe the size of the memory region to be free for verification purposes. </li>
+
+    </ul>
 
     <br>
     <h3><a href="/learning/lessons/">Next Lesson</a></h3>
