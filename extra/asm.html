@@ -1,0 +1,246 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/learning/style.css">
+    <style>
+        h2 { margin-bottom: 5px; }
+        .tac-on { padding: 2px; margin-left: 20px; margin-bottom: 10px }
+    </style>
+  </head>
+  <body>
+    <h1>Assembler Snippets</h1>        
+
+    <p>
+        This page contains a few basic assembler snippets in S1Asm.
+    </p>
+    <br>
+        
+    <h2>Fibonacci</h2>
+    <pre class="embed asm-source">
+"(comment start with a quote, like in baabnq)
+"memory map:
+"   $00 - a
+"   $01 - b
+"   $02 - c
+
+"a = 0
+set 0
+sRD 0
+
+"b = 1
+set 1
+sRD 1
+
+"c = 0
+set 0
+sRD 2
+
+lab loop
+    "c = a + b
+    lDA 0
+    lDR 1
+    add
+    sAD 2
+
+    "a = b
+    lDA 1
+    sAD 0
+
+    "b = c
+    lDA 2
+    sAD 1
+
+    "print(c)
+    out 2
+
+    "if (c &lt 1000) goto loop
+    lDA 2
+    set 1000
+    jmL loop
+brk
+    </pre>
+    <br>
+        
+    <h2>Multiplication Routine</h2>
+    <pre class="embed asm-source">
+"memory map:
+"   $00 - temp
+"   $01 - mul.a
+"   $02 - mul.b
+"   $03 - mul.product
+
+clr
+set 3
+add 
+pha
+
+clr
+set 4
+add
+pha
+
+jmS mul
+
+pla
+sAD 0
+out 0
+brk
+
+
+"(a, b) =&gt (a * b)
+lab mul
+    "deconstruct in-frame
+    pla
+    sAD 0
+        pla
+        sAD 2
+        pla
+        sAD 1
+    lDA 0
+    pha
+
+    "multiplication loop
+    clr
+    sAD 3
+    lab mul.loop
+        "a--
+        lDA 1
+        jm0 mul.done
+        set 1
+        sub
+        sAD 1
+
+        "prod += b
+        lDR 2
+        lDA 3
+        add
+        sAD 3
+        
+        got mul.loop
+    lab mul.done
+
+    "reconstruct out-frame
+    pla
+    sAD 0
+        lDA 3
+        pha
+    lDA 0
+    pha
+    ret
+    </pre>
+    <br>
+
+    <h2>Recursive Factorial using Math.baabnq</h2>
+    <pre class="embed asm-source">
+"memory map:
+"   $10 - n (the number)
+
+"($0 - $9 are not used 
+" because they are reserved by the stdlib)
+
+clr
+set 5
+add
+pha
+
+jmS fac
+
+pla
+sAD 10
+out 10
+brk
+
+
+"(n) =&gt (!n)
+lab fac
+    "in-frame
+    jmS Stack::Swap
+        pla
+        sAD 10
+
+    "n
+    "($0 will collide in recursive call)
+    lDA 10
+    pha
+
+
+    "fac(n-1)
+    lDA 10
+    set 1
+    jmA fac.basecase
+    sub
+    pha
+    jmS fac
+
+    "n * fac(n-1)
+    jmS Math::Mul
+
+    lab fac.basecase
+
+    "out-frame
+    "(out-paramter is on stack already)
+    jmS Stack::Swap
+    ret
+    </pre>
+
+    <h4>How to compile and link</h4>
+    <p>Assuming the factorial program is saved under fac.s1</p>
+    <pre class="embed">
+python3 compi.py -i libs/math.baabnq -o math.s1
+cat fac.s1 math.s1 &gt build.s1
+python3 vm.py -f build.s1
+    </pre>
+
+
+
+
+    <script>
+        var getColor = (raw) => {
+            if (raw.length == 0)     return "";
+            if (raw.startsWith('"')) return "gray";
+
+            var operation = raw.split(" ")[0].toLowerCase();
+
+            let FLOWCTL_OP = ["lab", "got", "jma", "jm0", "jml", "jmg"];
+            let STACKIO_OP = ["pha", "pla", "jms", "ret"];
+            let GENERIC_OP = ["brk", "set", "out", "inp"]; 
+            let ARITHME_OP = ["add", "sub", "lor", "and", "xor", "not"]; 
+
+
+            if (FLOWCTL_OP.includes(operation)) return "#ff0";
+            if (STACKIO_OP.includes(operation)) return "#f0f";
+            if (GENERIC_OP.includes(operation)) return "#2f2";
+            if (ARITHME_OP.includes(operation)) return "#f80";
+            
+
+            return "#0ab";
+        };
+
+
+
+
+        var highlight = (tag) => {
+            var lines = tag.innerText.split("\n");
+            var out = "";
+
+
+            for (let line of lines) {
+                var color = getColor(line.trim());
+                
+                out += `<span style="color: ${color}">`;
+                out += line;
+                out += "</span>\n";
+            }
+
+            tag.innerHTML = out;
+        };
+
+        var init = () => {
+            var tags = document.getElementsByClassName("asm-source");
+            for (let tag of tags) highlight(tag);
+        };
+
+
+        window.addEventListener("load", init);
+    </script>
+  </body>
+</html>
