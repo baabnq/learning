@@ -18,7 +18,7 @@ li {
     <h1>Lesson 11 - Assembly</h1>
     <p>
         Baabnq compiles down to S1Asm (S1monsAssembly, very creative name, i know, but i came up with it like 6 years ago, so cut me some slack). 
-        This is relevant because it means that all assembler written in baabnq as inline is S1Asm.
+        This is relevant because it means that all inline assembler written in baabnq is S1Asm.
         <br>
         Inline assembler in baabnq is done with the <span style="color: #2f2" class="inline-embed">asm</span> command.
         Consider the following example:
@@ -35,7 +35,9 @@ asm 'brk';
         The above example will print 123, but it's functioning isn't relevant for now.
         <br>
         S1Asm always targets the S1AsmVM, which is a minimal 16-bit virtual machine.
-        It will be detailed in the following:
+        It will be detailed in the following.
+        For some example snippets, refer to <a href="/learning/extra/asm.html">this</a>.
+        (Which is recommend you do, because i spent way too long on them).
     </p>
 
     <h3>Specifications</h3>
