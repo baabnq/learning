@@ -130,6 +130,15 @@ lab mul
     <br>
 
     <h2>Recursive Factorial using Math.baabnq</h2>
+    <div style="padding-left: 20px; margin-left: 20px; border-left: 3px double #666">
+        <h4>How to compile and link</h4>
+        <p>Assuming the factorial program is saved under fac.s1</p>
+        <pre class="embed">
+python3 compi.py -i libs/math.baabnq -o math.s1
+cat fac.s1 math.s1 &gt build.s1
+python3 vm.py -f build.s1
+        </pre>
+    </div>
     <pre class="embed asm-source">
 "memory map:
 "   $10 - n (the number)
@@ -181,15 +190,108 @@ lab fac
     jmS Stack::Swap
     ret
     </pre>
+    <br>
 
-    <h4>How to compile and link</h4>
-    <p>Assuming the factorial program is saved under fac.s1</p>
-    <pre class="embed">
-python3 compi.py -i libs/math.baabnq -o math.s1
-cat fac.s1 math.s1 &gt build.s1
-python3 vm.py -f build.s1
+    <h2>Sieve of Era.. Who?</h2>
+    <pre class="embed asm-source">
+"ruffly translated from: 
+"https://rosettacode.org/wiki/Sieve_of_Eratosthenes#C
+
+"memory map:
+"   $10 - n
+"   (m doesn't exist because sqrt is hard)
+"   $12 - tmp
+"   $13 - i
+"   $14 - j
+"   $20 - sieve
+
+
+set 10000
+sRD 10
+
+
+"sieve = calloc(n+1, sizeof(char));
+lDR 10
+ahm
+sAD 20
+
+"sieve[0] = 1;
+"sieve[1] = 1;
+set 1
+lDA 20
+sAD 12
+sRP 12
+add
+sAD 12
+sRP 12
+
+
+set 2
+sRD 13
+lab finderLoop
+    "compute position in sieve
+    lDA 13
+    lDR 20
+    add
+    sAD 12
+
+    "check if prime by sieve
+    lPA 12
+    set 1
+    jmA noPrime
+
+        "if it's a prime, print it
+        out 13
+
+        "mark all multiples
+        lDA 13
+        sAD 14
+        lab markLoop
+            "compute sieve position
+            lDA 14
+            lDR 20
+            add
+            sAD 12
+
+            "set sieve position
+            set 1
+            sRP 12
+
+            "loop control
+            lDA 14
+            lDR 13
+            add
+            sAD 14
+            lDR 10
+        jmL markLoop
+
+    lab noPrime
+
+    "loop control
+    lDA 13
+    set 1
+    add
+    sAD 13
+    lDR 10
+jmL finderLoop
+
+brk
     </pre>
 
+
+
+    <br>
+    <h3>Need MOAR?</h3>
+    <p>
+Find yourself yearning for more? <br>
+Well that's too bad, i can't tell you where to find more... (cause i'm too lazy to write more snippets) <br>
+But i can tell you where to not find more... <br>
+And that is emittance of the baabnq compiler, because... <br>
+what it spits out is very, very, VERY hard to read or understand. <br>
+Just wanted to caution you :3 <br>
+<br>
+But if you want to understand S1Asm more deeply, i suggest you write some.
+    </p>
 
 
 
