@@ -13,22 +13,21 @@
             -leetcode     /
             -exts lol ig  /
             -progs        /
-                -fix
+                -fix      /
 
         -fix
-            -command definition in early lesson to use "inline-embed"
+            -command definition in early lesson to use "inline-embed" /
             -reference to example page on philosophy page or others
 
 
         -variable collision  /
         -variable insulation /
 
-        -asm s1asm
+        -asm s1asm /
         -stdlib stuff
             -looking at source code before using routine
-
-        -structure convention
-        -module conventions
+            -module conventions   /
+            -structure convention /
 
         (
             -advanced stuff:
@@ -38,3 +37,6 @@
 
         -links
         -grammar checks
+
+
+
