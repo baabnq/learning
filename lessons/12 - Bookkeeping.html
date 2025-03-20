@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/learning/style.css">
+        <title>Lesson 12</title>
+    </head>
+    <body>
+        <h1>Lesson 12 - Bookkeeping</h1>
+        <p>
+            Libraries in Baabnq (also called modules) are a bundled collection of routines,
+            that act on a custom or predefined common concept. (those are concepts like Int, Chunk or Float.)
+            If a module acts on a custom concept, this concept is usually defined by the module itself.
+        </p>
+        <p>
+            Most modules adhere to the following layout convention, 
+            where `ModuleName` is the name of the module:
+        </p>
+        <pre class="baabnq-source embed">
+"dependencies
+use 'path/to/dep1.baabnq';
+use 'path/to/dep2.baabnq';
+"...
+
+"initialize module state
+sub `ModuleName`::ModuleInit;
+
+jump `ModuleName`::Skip;
+    "start of routine definitions
+    
+    "initializer routine definition
+    lab `ModuleName`::ModuleInit;
+        "initializations and concept definitions
+        "...
+
+    "other routine definitions
+    lab `ModuleName`:: ... ;
+        "...
+
+lab `ModuleName`::Skip;
+        </pre>
+
+        <p>
+            If the module neither has internal state nor defines concepts, only using predefined ones, 
+            then the module initializer routine may be omitted.
+        </p>
+
+
+
+        <script src="/learning/highlight.js"></script>
+    </body>
+</html>
