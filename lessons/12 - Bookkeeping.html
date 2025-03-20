@@ -10,6 +10,9 @@
             that act on a custom or predefined common concept. (those are concepts like Int, Chunk or Float.)
             If a module acts on a custom concept, this concept is usually defined by the module itself.
         </p>
+        <br>
+
+        <h2>Module Conventions</h2>
         <p>
             Most modules adhere to the following layout convention, 
             where `ModuleName` is the name of the module:
@@ -42,6 +45,34 @@ lab `ModuleName`::Skip;
             If the module neither has internal state nor defines concepts, only using predefined ones, 
             then the module initializer routine may be omitted.
         </p>
+        <br>
+
+        <h2>Structure Conventions</h2>
+        <p>
+            A structure (much like in c) is a concept which divides a memory region into unique fields.
+            Structures are not native baabnq concepts, meaning they are not directly supported by any language features.
+            The fields of a structure are given names by declaring a variable, which stores the offset into the memory region,
+            where that field is placed at.
+            Consider this example definition:
+        </p>
+        <pre class="baabnq-source embed">
+"tree structure
+"_p+0 -&gt content :: Int
+"_p+1 -&gt left    :: Tree
+"_p+2 -&gt right   :: Tree
+"_p+3 -&gt isLeaf  :: Bool
+
+put _`ModuleName`::Tree::CONTENT = 0;
+put _`ModuleName`::Tree::RIGHT   = 1;
+put _`ModuleName`::Tree::LEFT    = 2;
+put _`ModuleName`::Tree::ISLEAF  = 3;
+        </pre>
+        <p>
+            As is apparent above, structure definitions consists of two parts.
+            The first part lays out the structure fields and offsets along with types, purely as a comment.
+            The second part binds the offsets to the scoped field name.
+        </p>
+
 
 
 
