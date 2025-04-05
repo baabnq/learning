@@ -79,6 +79,137 @@ put _`ModuleName`::Tree::ISLEAF  = 3;
         </p>
         <br>
 
+        <h2>Nomenclature</h2>
+        <p>
+            "Allocate" / "Deallocate" always refers to a single chunk on the heap.
+            Whereas "Create" / "Delete" refers to concepts that might consist of many chunks.
+            These are also called "Objects", as they represent the combination of data and behaviour.
+            Note that, "Allocate" will also zero out the chunk.
+            For example, the behaviour of the tree structure example above might be implemented like so:
+        </p>
+        <pre class="embed baabnq-source">
+use 'libs/stack.baabnq';
+
+sub Tree::ModuleInit;
+
+jump Tree::Skip;
+    lab Tree::ModuleInit;
+        "tree structure defines Tree
+        "_p+0 -> content :: Int
+        "_p+1 -> left    :: Tree
+        "_p+2 -> right   :: Tree
+        "_p+3 -> isLeaf  :: Bool
+
+        put _Tree::Tree::CONTENT = 0;
+        put _Tree::Tree::RIGHT   = 1;
+        put _Tree::Tree::LEFT    = 2;
+        put _Tree::Tree::ISLEAF  = 3;
+
+        return;
+
+    "=> (::Tree)
+    lab Tree::Allocate;
+        new 4 _pTree;
+
+        put 0 -> _pTree + _Tree::Tree::CONTENT;
+        put 0 -> _pTree + _Tree::Tree::RIGHT;
+        put 0 -> _pTree + _Tree::Tree::LEFT;
+        put 0 -> _pTree + _Tree::Tree::ISLEAF;
+
+        push _pTree; sub Stack::Swap;
+        return;
+
+    "(::Tree)
+    lab Tree::Deallocate;
+        sub Stack::Swap; pull _pTree;
+        
+        free _pTree;
+
+        return;
+
+    "(Depth::Int) => (::Tree)
+    "data Tree = Leaf | Node Tree Tree
+    "createByDepth 0 = Leaf
+    "createByDepth x =
+    "   (\x -> Node x x) $ createByDepth (x - 1)
+    lab Tree::Create;
+    lab Tree::CreateByDepth;
+        sub Stack::Swap;
+        pull _depth;
+
+        sub Tree::Allocate;
+        sub Stack::Dup; pull _pNode;
+
+        "write leaf property
+        push 0;
+        push 1;
+        sub Stack::Swap ~ _depth == 0;
+        pull __;
+        pull __;
+        put __ -&gt _pNode + _Tree::Tree::ISLEAF;
+
+        "base case
+        sub Stack::Swap;
+        sub No::Return ~ _depth == 0;
+        sub Stack::Swap;
+
+        "create recursivly
+        "construct in-frames
+        push _depth - 1; "frame 1
+        push _depth - 1; "frame 2
+
+        "calls
+        sub Tree::CreateByDepth; "rec call 1
+        sub Stack::Swap; "swap ctx
+        sub Tree::CreateByDepth; "rec call 2
+
+        "deconstruct out-frames and recover ctx
+        pull _pLeft;
+        pull _pRight;
+        pull _pNode;
+
+        "link to sub trees
+        put _pLeft  -&gt _pNode + _Tree::Tree::LEFT;
+        put _pRight -&gt _pNode + _Tree::Tree::RIGHT;
+
+        "done
+        push _pNode;
+        sub Stack::Swap;
+        return;
+
+    "(::Tree)
+    lab Tree::Delete;
+        sub Stack::Swap;
+        pull _pTree;
+
+        "get leaf property
+        put _isLeaf &lt- _pTree + _Tree::Tree::ISLEAF;
+
+        "dealloc given tree node
+        push _pTree; sub Tree::Deallocate;
+
+        "basecase
+        sub No::Return ~ _isLeaf != 0;
+
+        "get sub trees
+        put _pLeft  &lt- _pTree + _Tree::Tree::LEFT;
+        put _pRight &lt- _pTree + _Tree::Tree::RIGHT;
+
+        "construct in-frame
+        push _pLeft;
+        push _pRight;
+
+        sub Tree::Delete;
+        sub Tree::Delete;
+
+        return;
+
+lab Tree::Skip;
+        </pre>
+        <br>
+
+
+
         <h2>Good practices</h2>
         <p>
             When using a module as a dependency,
