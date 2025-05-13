@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/learning/style.css">
+  </head>
+  <body>
+    <h1>Obligatory collection of cat pictures</h1>
+
+    <p>
+        I like cats and so do you. Don't lie to yourself!
+        Instead enjoy the collection of appropriately themed cat pictures.
+        (you know, cuz the background color is black so the cats are too)
+    </p>
+    <br>
+
+    <div id="kitty-container">
+    </div>
+
+    <script>
+        var kittyContainer = document.getElementById('kitty-container');
+        var kittyCount = 5;
+        for (i = 1; i <= kittyCount; i++)
+        {
+            var kittyImg = document.createElement("img");
+            kittyImg.src = `/learning/pics/cats/kitty${i}.jpg`;
+            kittyImg.style = "width: 70%; margin-bottom: 35px";
+            kittyImg.classList.add("center-img");
+            kittyImg.classList.add("embed");
+            kittyContainer.appendChild(kittyImg);
+        }
+    </script>
+
+
+  </body>
+</html>
