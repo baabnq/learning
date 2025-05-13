@@ -27,7 +27,7 @@ return;
 
     <p>
 The above program defines a routine that prints 123 and then calls that routine twice.
-The <span class="inline-embed baabnq-source">asm</span> is an <a href="">inline assembler statement</a> and just halts the program. 
+The <span class="inline-embed baabnq-source">asm</span> is an <a href="/learning/lessons/11 - Assembly.html">inline assembler statement</a> and just halts the program. 
 Halting the program before it reaches the definition of the routine is important, because otherwise execution would continue and run through that definition as if it were normal code. 
 There is nothing that inherently distinguishes the routine from the rest of the program, except the fact that it's called by the <span class="inline-embed baabnq-source">sub</span> command.
 A rule of thumb is that routine calls are used globally, while jumps are used locally.
@@ -65,7 +65,7 @@ In the program above, a routine is defined for adding two values together and is
 After the routine finishes, the one out-parameter is pulled from the stack and then output. 
 In the first line of the program, the stack library is imported to provide the Stack::Swap routine, which is used to swap the top two values on the stack. 
 This is necessary because right before the routine is called, the return address is pushed onto the stack last, which buries the in-parameters under it. 
-The return address could also be taken off of the stack by the routine, but this is rather uncommon due to the high risk of <a href="">variable collision</a>.
+The return address could also be taken off of the stack by the routine, but this is rather uncommon due to the high risk of <a href="/learning/lessons/10 - Vexing Variables.html">variable collision</a>.
     </p>
 
     <br>
