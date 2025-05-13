@@ -12,7 +12,13 @@
       but i do wish to congratulate you on making it through the core features. Good job, have a cat picture:
     </p>
 
-    <img class="center-img" src="/learning/pics/kitty.jpeg" style="width: 50%;">
+    <img class="kitty-img center-img" src="" style="width: 50%;">
+    <script>
+        var kittyImgIndex = Math.floor(Math.random() * 5 + 1);
+        var kittyImgSrc = `/learning/pics/cats/kitty${kittyImgIndex}.jpg`;
+        var kittyImgTag = document.getElementsByClassName("kitty-img")[0];
+        kittyImgTag.src = kittyImgSrc;
+    </script>
    
     <br>
     <h4>Now, a bit about the Philosophy of Baabnq</h4>
@@ -48,6 +54,9 @@
         The two main ones are Routines Signatures and Naming Conventions, which will both be covered in the next lessons.
         
 
+        <br>
+        <br>
+        
 
     </p>        
         
