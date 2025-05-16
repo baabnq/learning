@@ -15,28 +15,29 @@
             -progs        /
                 -fix      /
 
-        -fix
+        -fix /
             -command definition in early lesson to use "inline-embed" /
-            -reference to example page on philosophy page or others
+            -reference to example page on philosophy page or others /
 
 
         -variable collision  /
         -variable insulation /
 
         -asm s1asm /
-        -stdlib stuff
-            -looking at source code before using routine
+        -stdlib stuff /
+            -looking at source code before using routine /
             -module conventions   /
             -structure convention /
 
-        (
-            -advanced stuff:
-                -compile-time generics
-        )
+        -cat pictures / (very good i likey)
 
+        -philso
+            -compilation method
+            -context free
 
-        -links
+        -links /
         -grammar checks
+
 
 
 
