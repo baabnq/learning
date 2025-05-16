@@ -23,7 +23,7 @@ h1 {
     text-align: center;
 }
 
-p, pre, .embed, table {
+p, pre, .embed, table, li {
     font-family: Consolas, Monospace;
 }
 
