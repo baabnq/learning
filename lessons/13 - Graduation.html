@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/learning/style.css">
+        <title>13 - Graduation</title>
+        <style>
+            .glow {
+                text-shadow:
+                0 0 10px #fff,
+                0 0 10px #fff,
+                0 0 10px #fff,
+                0 0 10px #fff,
+                0 0 10px #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Lesson 13 - Graduation</h1>
+        <p>
+            <span class="sparkle">Congradulations!</span>
+            You made it through.
+        </p>
+
+
+
+        <script>
+            var sparkies = document.getElementsByClassName("sparkle");
+            var puppies = [];
+            for (let sparkle of sparkies)
+            {
+                let content = sparkle.innerText;
+                sparkle.innerText = "";
+
+                let glow = true;
+                for (let letter of content) 
+                {
+                    //haha get it cuz like sparkledog
+                    let pup = document.createElement("span")
+                    pup.innerText = letter;
+                    if (glow)
+                        pup.classList.add("glow");
+
+                    puppies.push(pup);
+                    sparkle.appendChild(pup);
+
+                    glow = !glow;
+                }
+
+            }
+
+            var update = () => {
+                for (let pup of puppies)
+                    if (pup.classList.contains("glow"))
+                        pup.classList.remove("glow");
+                    else
+                        pup.classList.add("glow");
+                setTimeout(update, 400);
+            };
+            update();
+        </script>
+    </body>
+</html>
