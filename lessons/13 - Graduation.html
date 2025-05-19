@@ -34,7 +34,7 @@
                 for (let letter of content) 
                 {
                     //haha get it cuz like sparkledog
-                    let pup = document.createElement("span")
+                    let pup = document.createElement("span");
                     pup.innerText = letter;
                     if (glow)
                         pup.classList.add("glow");
@@ -48,11 +48,11 @@
             }
 
             var update = () => {
-                for (let pup of puppies)
-                    if (pup.classList.contains("glow"))
-                        pup.classList.remove("glow");
+                for (let list of puppies.map(x => x.classList))
+                    if (list.contains("glow"))
+                        list.remove("glow");
                     else
-                        pup.classList.add("glow");
+                        list.add("glow");
                 setTimeout(update, 400);
             };
             update();
