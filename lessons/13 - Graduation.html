@@ -8,54 +8,76 @@
                 0 0 10px #fff,
                 0 0 10px #fff,
                 0 0 10px #fff,
-                0 0 10px #fff,
                 0 0 10px #fff;
             }
         </style>
     </head>
-    <body>
+    <body style="border-width: 2px; border: 1px dashed white;">
         <h1>Lesson 13 - Graduation</h1>
         <p>
-            <span class="sparkle">Congradulations!</span>
-            You made it through.
+            <span style="font-size: 150%" class="sparkle">
+                Congradulations!
+            </span>
+            You made it through. 
+            <br>
+            <span style="color: gray;">
+                (But this time you won't get a cat picture O&#768wO&#769)
+            </span>
+            <br><br>
+            At this point, you should be fairly capable of,
+            and knowledgable about baabnq,
+            assuming you've read and grasped the proceeding lessons.
+            <br>
+            
+
         </p>
 
 
 
         <script>
-            var sparkies = document.getElementsByClassName("sparkle");
-            var puppies = [];
-            for (let sparkle of sparkies)
-            {
-                let content = sparkle.innerText;
-                sparkle.innerText = "";
-
-                let glow = true;
-                for (let letter of content) 
+            var init = () => {
+                var sparkies = document.getElementsByClassName("sparkle");
+                var puppies = [];
+                for (let sparkle of sparkies)
                 {
-                    //haha get it cuz like sparkledog
-                    let pup = document.createElement("span");
-                    pup.innerText = letter;
-                    if (glow)
-                        pup.classList.add("glow");
+                    var content = sparkle.innerText;
+                    sparkle.innerText = "";
 
-                    puppies.push(pup);
-                    sparkle.appendChild(pup);
+                    var glow = true;
+                    for (let letter of content) 
+                    {
+                        //haha get it cuz like sparkledog
+                        var pup = document.createElement("span");
+                        pup.innerText = letter;
+                        if (glow)
+                            pup.classList.add("glow");
 
-                    glow = !glow;
+                        puppies.push(pup);
+                        sparkle.appendChild(pup);
+
+                        glow = !glow;
+                    }
+
                 }
 
-            }
+                return puppies;
+            };
 
-            var update = () => {
+            var update = (puppies) => {
                 for (let list of puppies.map(x => x.classList))
                     if (list.contains("glow"))
                         list.remove("glow");
                     else
                         list.add("glow");
-                setTimeout(update, 400);
+                setTimeout(() => update(puppies), 400);
             };
-            update();
+
+            var main = () => {
+                var puppies = init();
+                update(puppies);
+            };
+
+            //main();
         </script>
     </body>
 </html>
