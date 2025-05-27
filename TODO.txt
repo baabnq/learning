@@ -1,9 +1,4 @@
 -docs
-    -better quickstart
-
-    - "I'm confused" links
-
-
     -lessons:
 
         -THESE A THING RIGHT HERE THAT SAYS: /
@@ -31,9 +26,11 @@
 
         -cat pictures / (very good i likey)
 
-        -philso
-            -compilation method
-            -context free
+        ( too compilcated
+            -philso
+                -compilation method
+                -context free
+        ) /
 
         -links /
         -grammar checks
