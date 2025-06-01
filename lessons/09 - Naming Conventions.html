@@ -33,7 +33,7 @@ lab MyModule::Routine;
             <span class="g">&lt;module name&gt;</span>::<span class="g">&lt;routine name&gt;</span>::<span class="g">&lt;sublabel 0&gt;</span>::<span class="g"> ... </span>; 
         </span><br>
         
-        This is known as identifier scoping and done because labels, much like variables, 
+        This is known as identifier scoping and is done because labels, much like variables, 
         have no inherent scope and are globally accessable.<br>
         
     </p>
@@ -57,7 +57,7 @@ lab MyModule::Routine;
         While variables are also scopeless, they are almost always used locally.
         As such, they usually don't rely on identifier scoping.
         The arising problem of <a href="/learning/lessons/10 - Vexing Variables.html">variable collision</a> between different routines and modules is solved through <a href="/learning/lessons/10 - Vexing Variables.html">variable insulation</a>.
-        In the case rare a variable is employed globally, it also uses identifier scoping. See the example above
+        In the rare case a variable is employed globally, it also uses identifier scoping. See the example above
         <span class="inline-embed" style="color: cyan;">_Floats::Zero</span>, where this is used for a global constant, stemming from the floating-point module.
         
     </p>

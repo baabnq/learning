@@ -10,7 +10,7 @@
 Routines in Baabnq are kind of like functions or methods in higher-level programming languages. 
 They define encapsulated parts of the program that can be called multiple times from different points in the program.
 Baabnq uses one shared stack for both <a href="https://en.wikipedia.org/wiki/Return_statement">return addresses</a> and routine parameters. 
-Furthermore, Baabnq doesn't build stack frames as the underlying VM only provides a stack pointer and not a base pointer.
+Furthermore, Baabnq doesn't build stack frames, as the underlying VM only provides a stack pointer and not a base pointer.
     </p>
 
     <h2>Calling Routines</h2>
@@ -29,7 +29,7 @@ return;
 The above program defines a routine that prints 123 and then calls that routine twice.
 The <span class="inline-embed baabnq-source">asm</span> is an <a href="/learning/lessons/11 - Assembly.html">inline assembler statement</a> and just halts the program. 
 Halting the program before it reaches the definition of the routine is important, because otherwise execution would continue and run through that definition as if it were normal code. 
-There is nothing that inherently distinguishes the routine from the rest of the program, except the fact that it's called by the <span class="inline-embed baabnq-source">sub</span> command.
+There is nothing that inherently distinguishes the routine from the rest of the program, except for the fact that it's called by the <span class="inline-embed baabnq-source">sub</span> command.
 A rule of thumb is that routine calls are used globally, while jumps are used locally.
     </p>
 
